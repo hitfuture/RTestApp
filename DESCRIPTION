@@ -1,0 +1,14 @@
+Package: RTestApp
+Type: Package
+Title: Test Shiny Application
+Version: 0.1.0
+Author: Brett Taylor
+Maintainer: Brett Taylor <brett@hitfuturenow.com>
+Description: This is an R Shiny App that provides a solution to test 
+    improve performance in Health Care.
+License: MIT
+Depends:
+    R (>= 3.1)
+Imports:
+Encoding: UTF-8
+LazyData: true
