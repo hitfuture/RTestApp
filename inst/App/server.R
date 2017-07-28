@@ -1,20 +1,33 @@
 library(shiny)
 
 # Define server logic required to draw a histogram
-shinyServer(function(input, output) {
+shinyServer(function(input, output,session) {
+  output$dateselected <- renderText({paste("start date:",input$daterange1[1])})
 
-  # Expression that generates a histogram. The expression is
-  # wrapped in a call to renderPlot to indicate that:
-  #
-  #  1) It is "reactive" and therefore should re-execute automatically
-  #     when inputs change
-  #  2) Its output type is a plot
 
-  output$distPlot <- renderPlot({
-    x    <- faithful[, 2]  # Old Faithful Geyser data
-    bins <- seq(min(x), max(x), length.out = input$bins + 1)
+  observe({
 
-    # draw the histogram with the specified number of bins
-    hist(x, breaks = bins, col = 'darkgray', border = 'white')
+    updateTextInput(session,inputId = "myresults",value = input$sdrangepicker)
   })
+  observeEvent(input$sdrangepicker,
+               {
+                 output$selecteddate <- renderText({
+
+                   input$sdrangepicker
+
+                 })
+               }
+  )
+
+  output$selecteddate <- renderText({
+
+    input$sdrangepicker
+
+  })
+  output$enddateselected <- renderText({
+    input$enddate
+  })
+
+
+
 })
